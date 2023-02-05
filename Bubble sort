@@ -1,0 +1,27 @@
+Module Module1
+
+    Sub Main()
+        Dim Numbers(0 To 9) As Integer
+        Numbers = {6, 5, 4, 2, 9, 7, 8, 1, 10, 13}
+    End Sub
+    Sub bsort(ByRef myarr As Array)
+        Dim swap As Boolean
+        Dim temp As Integer
+        Dim max As Integer
+        max = 9
+        Do
+            For index = 0 To Max - 1
+                Swap = False
+                If myarr(index) > myarr(index + 1) Then
+                    temp = myarr(index)
+                    myarr(index) = myarr(index + 1)
+                    myarr(index + 1) = temp
+                    swap = True
+                End If
+                Console.ReadKey()
+
+            Next
+        Loop Until Swap = False
+
+    End Sub
+End Module

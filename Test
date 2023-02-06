@@ -1,0 +1,77 @@
+Module Module1
+
+    Sub Main()
+        Dim Carddata(0 To 9) As Integer
+        Dim ValueToSearch As Integer
+        Dim Found As Boolean
+
+
+        Carddata = {11, 12, 25, 33, 52, 56, 57, 59, 91, 85}
+        bsort(Carddata)
+        Console.Write("Enter value to search : ")
+        ValueToSearch = Console.ReadLine()
+        For index = 0 To 9
+
+            If ValueToSearch = Carddata(index) Then
+                Found = True
+                If Found = True Then
+                    Console.WriteLine("Value found in carddata")
+                Else
+                    Console.WriteLine("Value not found")
+                End If
+            End If
+        Next
+        Console.ReadKey()
+
+    End Sub
+
+    Sub bsort(ByRef Carddata As Array)
+        Dim temp As Integer
+        Dim max As Integer
+        Dim Swap As Boolean
+
+        max = 9
+        Do
+            For index = 0 To max - 1
+                Swap = False
+                If Carddata(index) > Carddata(index + 1) Then
+
+                    temp = Carddata(index)
+                    Carddata(index) = Carddata(index + 1)
+                    Carddata(index + 1) = temp
+                    Swap = True
+
+                End If
+                max = max - 1
+            Next
+        Loop Until Swap = True
+
+    End Sub
+    Function binarysearch(ByVal search As Integer, ByVal card As Array) As Boolean
+        Dim middle As Integer
+        Dim Upperbound As Integer
+        Dim Lowerbound As Integer
+        Dim Found As Boolean
+        Found = False
+        Lowerbound = 0
+        Upperbound = 9
+
+        While Upperbound >= Lowerbound And Found = False
+
+            middle = (Lowerbound + Upperbound) / 2
+            If card(middle) = search Then
+                Found = True
+                Return middle
+
+            ElseIf search < card(middle) Then
+                Upperbound = middle - 1
+            Else
+                Lowerbound = middle + 1
+            End If
+        End While
+
+        Return -1
+
+    End Function
+
+End Module

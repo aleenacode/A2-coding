@@ -1,0 +1,28 @@
+Module Module1
+
+    Sub Main()
+        Dim height(0 To 4) As Integer
+        height = {29, 10, 14, 37, 40}
+        Dim temp As Integer
+        Dim maxsize As Integer
+        Dim insert As Integer
+
+        maxsize = 4
+
+        For count = 0 To maxsize - 1
+            temp = height(count)
+            insert = count
+            While insert > 0 AndAlso height(insert - 1) >= temp
+                height(insert) = height(insert - 1)
+                insert = insert - 1
+            End While
+            height(insert) = temp
+        Next
+        For count = 0 To maxsize
+            Console.WriteLine(count & ":" & height(count))
+        Next
+        Console.ReadKey()
+
+    End Sub
+
+End Module

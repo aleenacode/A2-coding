@@ -1,0 +1,42 @@
+Module Module1
+    'Part a
+    Dim Queue(0 To 99) As Integer
+    Dim Headpointer As Integer = -1
+    Dim Tailpointer As Integer = 0
+    'Part b
+    Function Enqueue(ByVal num As Integer) As Boolean
+        If Tailpointer = 100 Then
+            Console.WriteLine("Queue is full")
+            Return False
+        Else
+            If Headpointer = -1 Then
+                Headpointer = Tailpointer
+            End If
+            Queue(Tailpointer) = num
+            Tailpointer = Tailpointer + 1
+            Return True
+        End If
+    End Function
+    Sub Main()
+        'Part c
+        Dim Success As Boolean
+        For count = 1 To 20
+            Success = Enqueue(count)
+        Next
+        If Success = False Then
+            Console.WriteLine("Unsuccessfull")
+        Else
+            Console.WriteLine("Successfull")
+        End If
+        'part e
+        Console.WriteLine(Recursiveoutput(Tailpointer - 1))
+    End Sub
+    'Part d
+    Function Recursiveoutput(ByVal Start)
+        If (Start = 0) Then
+            Return Queue(Start)
+        Else
+            Return Queue(Start) + Recursiveoutput(Start - 1)
+        End If
+    End Function
+End Module

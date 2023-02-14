@@ -1,0 +1,67 @@
+Module Module1
+    'Part a
+    Dim Jobs(0 To 99, 0 To 1) As Integer
+    Dim NumberOfJobs As Integer
+    'Part b
+    Sub Initialise()
+        For a = 0 To 99
+            For b = 0 To 1
+                Jobs(a, b) = -1
+            Next
+        Next
+        NumberOfJobs = 0
+    End Sub
+    'Part c
+    Sub AddJob(ByVal Jobnumber, ByVal Priority)
+        If NumberOfJobs = 100 Then
+            Console.WriteLine("Not Added")
+        Else
+            Jobs(NumberOfJobs, 0) = Jobnumber
+            Jobs(NumberOfJobs, 1) = Priority
+            NumberOfJobs = NumberOfJobs + 1
+            Console.WriteLine("Added")
+        End If
+    End Sub
+    Sub Main()
+        'Part c
+        Initialise()
+        AddJob(12, 10)
+        AddJob(526, 9)
+        AddJob(33, 8)
+        AddJob(12, 9)
+        AddJob(78, 1)
+        InsertionSort()
+        PrintArray()
+        Console.ReadKey()
+    End Sub
+    'Part e
+    Sub InsertionSort()
+        Dim Temp1 As Integer
+        Dim Temp2 As Integer
+        Dim Counter As Integer
+        Dim Swap As Boolean
+        For index = 1 To NumberOfJobs - 1
+            Temp1 = Jobs(index, 0)
+            Temp2 = Jobs(index, 1)
+            Counter = index
+            Swap = False
+            While (Counter > 0 And Not Swap)
+                If (Jobs(Counter - 1, 1) > Temp2) Then
+                    Jobs(Counter, 0) = Jobs(Counter - 1, 0)
+                    Jobs(Counter, 1) = Jobs(Counter - 1, 1)
+                    Counter = Counter - 1
+                Else
+                    Swap = True
+                End If
+            End While
+            Jobs(Counter, 0) = Temp1
+            Jobs(Counter, 1) = Temp2
+        Next index
+    End Sub
+    'Part f
+    Sub PrintArray()
+        For X = 0 To NumberOfJobs - 1
+            Console.WriteLine(Jobs(X, 0) & " priority " & Jobs(X, 1))
+        Next
+    End Sub
+End Module

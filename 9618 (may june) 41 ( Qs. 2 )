@@ -1,0 +1,48 @@
+Module Module1
+    Dim arraydata(0 To 9) As Integer
+    Sub Main()
+        arraydata(0) = 10
+        arraydata(1) = 5
+        arraydata(2) = 6
+        arraydata(3) = 7
+        arraydata(4) = 1
+        arraydata(5) = 12
+        arraydata(6) = 13
+        arraydata(7) = 15
+        arraydata(8) = 21
+        arraydata(9) = 9
+        Console.WriteLine("Enter a number to search : ")
+        Dim searchvalue As Integer = Console.ReadLine
+        Dim returnvalue As Boolean = linearsearch(searchvalue)
+        If returnvalue = True Then
+            Console.WriteLine("found")
+        Else
+            Console.WriteLine("not found")
+        End If
+        Console.ReadKey()
+    End Sub
+    Function linearsearch(ByVal searchvalue As Integer) As Boolean
+        For x = 0 To 9
+            arraydata(x) = arraydata(x + 1)
+            If arraydata(x) = searchvalue Then
+                Return True
+            End If
+            Return False
+        Next
+        Console.ReadKey()
+        Return True
+    End Function
+    Sub bubblesort()
+        Dim temp As Integer
+        Dim thearray(0 To 9) As Integer
+        For x = 0 To 9
+            For y = 0 To 8
+                If thearray(y) < thearray(y + 1) Then
+                    temp = thearray(y)
+                    thearray(y) = thearray(y + 1)
+                    thearray(y + 1) = temp
+                End If
+            Next
+        Next
+    End Sub
+End Module

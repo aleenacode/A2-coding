@@ -1,0 +1,34 @@
+Module Module1
+
+    Sub Main()
+        Dim mylist(0 To 10) As String
+        Dim letter As String
+        Dim nametosearch As Integer
+        mylist = {"r", "t", "u", "v", "w", "x", "y", "z", "a", "b", "c"}
+        Console.WriteLine("Enter letter to search : ")
+        letter = Console.ReadLine()
+        letter = nametosearch
+        linearsearch(mylist, letter)
+        Console.ReadKey()
+    End Sub
+    Sub linearsearch(ByVal mylist As Array, ByVal nametosearch As String)
+        Dim found As Boolean
+        Dim index As Integer
+        found = True
+
+        For index = 0 To 10
+            If nametosearch = mylist(index) Then
+                found = True
+            Else
+                found = False
+            End If
+
+            index = index + 1
+        Next
+        If found = True Then
+            Console.WriteLine("Name is found in mylist")
+        Else
+            Console.WriteLine("Name is not found")
+        End If
+    End Sub
+End Module

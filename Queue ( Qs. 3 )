@@ -1,0 +1,59 @@
+Module Module1
+    'Part a
+    Dim Queue(0 To 9) As Integer
+    Dim headpointer As Integer = 0
+    Dim tailpointer As Integer = 0
+    Dim numberofitems As Integer = 0
+    'Part c(i)
+    Sub Main()
+        Dim DataToAdd As String
+        'part c(ii)
+        Queue = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K"}
+        'part c(i)
+        For x = 0 To 10
+            ConsModuleole.WriteLine("Enter a value : ")
+            DataToAdd = Console.ReadLine()
+            If Enqueue(Queue(), headpointer, tailpointer, numberofitems, DataToAdd) Then
+                Console.WriteLine("Successfull")
+            Else
+                Console.WriteLine("Unsuccessfull")
+            End If
+        Next
+        Dequeue()
+        Dequeue()
+
+    End Sub
+
+    'Part b
+    Function Enqueue(ByRef Queue() As String, ByRef headpointer As Integer, ByRef tailpointer As Integer, ByVal numberofitems As Integer, ByVal DataToAdd As String) As Boolean
+        If numberofitems = 10 Then
+            Return False
+        End If
+        Queue(tailpointer) = DataToAdd
+        If tailpointer >= 9 Then
+            tailpointer = 0
+        Else
+            tailpointer = tailpointer + 1
+        End If
+        numberofitems = numberofitems + 1
+        Return True
+    End Function
+    'Part c
+    Function Dequeue(ByRef Queue() As String, ByRef headpointer As Integer, ByRef tailpointer As Integer, ByVal numberofitems As Integer) As Boolean
+        If numberofitems = 0 Then
+            Return False
+        End If
+        Dim ReturnValue = Queue(headpointer)
+        headpointer = headpointer + 1
+        If headpointer >= 9 Then
+            headpointer = 0
+        End If
+        numberofitems = numberofitems - 1
+        Return ReturnValue
+    End Function
+
+    Private Sub Dequeue()
+        Throw New NotImplementedException
+    End Sub
+
+End Module

@@ -1,0 +1,76 @@
+Module Module1
+
+    Sub Main()
+        Dim choice As Integer
+        While choice <> 4
+            Console.Clear()
+            Console.WriteLine(" Enter 1 to Input New Data, 2 to Edit a Record, 3 to Display, 4 Exit ")
+            Console.Write(" Enter your choice ")
+            choice = Console.ReadLine
+            Select Case choice
+                Case 1 : enterdata()
+                Case 2 : editrecord()
+                Case 3 : display()
+                Case 4
+                Case Else
+                    Console.WriteLine(" Wrong Entry, input your choice again ")
+                    Console.ReadKey()
+            End Select
+        End While
+    End Sub
+
+    Sub enterdata()
+        Dim name As String
+        Dim rollno, marks As Integer
+        FileOpen(1, My.Application.Info.DirectoryPath & "\DKst.txt", OpenMode.Output)
+        For x = 1 To 5
+            Console.Write("Enter name : ")
+            name = Console.ReadLine()
+            Console.Write("Enter RollNo : ")
+            rollno = Console.ReadLine()
+            Console.Write("Enter Marks : ")
+            marks = Console.ReadLine()
+            WriteLine(1, rollno, name, marks)
+        Next
+        Console.WriteLine(" Your File Has Been Created ")
+        Console.ReadKey()
+        FileClose(1)
+
+    End Sub
+    Sub editrecord()
+        Dim nm = ""
+        Dim mk As Integer
+        Dim editRollNo, rollno As Integer
+        Console.Write("Enter RollNo of a student to edit their Marks")
+        editRollNo = Console.ReadLine()
+        FileOpen(1, My.Application.Info.DirectoryPath & "\DKst.txt", OpenMode.Input)
+        Input(1, rollno)
+        Input(1, nm)
+        Input(1, mk)
+        If editRollNo = rollno Then
+            Console.Write(" Enter New Marks : ")
+            mk = Console.ReadLine()
+            FileOpen(2, My.Application.Info.DirectoryPath & "\temp.txt", OpenMode.Output)
+            WriteLine(2, rollno, nm, mk)
+        Else
+            WriteLine(2, rollno, nm, mk)
+        End If
+        FileClose(2)
+        FileClose(1)
+        Kill(My.Application.Info.DirectoryPath & "\DKst.txt")
+        My.Computer.FileSystem.RenameFile(My.Application.Info.DirectoryPath & "\temp.txt", "DKst.txt")
+    End Sub
+    Sub display()
+        Dim rn, mk As Integer
+        Dim nm = ""
+        FileOpen(1, My.Application.Info.DirectoryPath & "\DKst.txt", OpenMode.Input)
+        While Not EOF(1)
+            Input(1, rn)
+            Input(1, nm)
+            Input(1, mk)
+            Console.WriteLine("The Roll No : " & rn & " The Name : " & nm & " The Marks : " & mk)
+        End While
+    
+    End Sub
+
+End Module
